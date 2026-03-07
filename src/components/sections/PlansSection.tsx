@@ -6,8 +6,8 @@ import { PLANS } from "@/lib/constants";
 export default function PlansSection() {
   return (
     <Section id="plans">
-      <SectionHeader label="번역 플랜" title="목적에 맞는 플랜을 선택하세요" />
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <SectionHeader label="서비스" title="상황에 맞게 선택하는 합리적인 요금제" />
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {PLANS.map((plan) => (
           <PlanCard
             key={plan.title}
@@ -16,6 +16,9 @@ export default function PlansSection() {
             features={plan.features}
             href={plan.href}
             highlight={plan.highlight}
+            price={plan.price}
+            priceUnit={plan.priceUnit}
+            badge={plan.badge}
           />
         ))}
       </div>

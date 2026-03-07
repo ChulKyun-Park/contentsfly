@@ -3,22 +3,26 @@
 
 /* ── Theme tokens (Tailwind v4) ── */
 @theme inline {
-  /* Brand colors */
-  --color-primary: #0097FE;
-  --color-primary-light: #E6F4FF;
-  --color-primary-dark: #0078CB;
+  /* ── ContentsFly Coolors 팔레트 (4색) ── */
+  --color-primary: #008BFF;          /* Dodger Blue — 버튼, 링크, 배지 */
+  --color-primary-light: #E5F3FF;    /* Dodger Blue 10% tint (배경용) */
+  --color-primary-dark: #0070CC;     /* Dodger Blue 어둡게 — hover */
 
-  /* Accent (CTA 강조용) */
-  --color-accent: #F59E0B;
-  --color-accent-light: #FEF3C7;
+  --color-navy: #1C3264;             /* Twilight Indigo — CTA 밴드, 다크 섹션 */
+  --color-navy-dark: #041530;        /* Prussian Blue — Footer, 가장 깊은 다크 */
+  --color-navy-light: #1C3264;       /* Twilight Indigo 동일 */
 
-  /* Neutrals */
+  /* Accent (최소 사용) */
+  --color-accent: #008BFF;           /* Dodger Blue 재활용 */
+  --color-accent-light: #E5F3FF;     /* primary-light 재활용 */
+
+  /* Neutrals — 회색 계열 */
   --color-background: #FFFFFF;
-  --color-foreground: #111827;
-  --color-muted: #6B7280;
-  --color-border: #E5E7EB;
-  --color-surface: #F9FAFB;
-  --color-hero-bg: #F8FBFF;
+  --color-foreground: #374151;       /* gray-700 — 본문 텍스트 */
+  --color-muted: #6B7280;            /* gray-500 — 보조 텍스트 */
+  --color-border: #E5E7EB;           /* gray-200 — 구분선 */
+  --color-surface: #FAFAFA;          /* Bright Snow — 배경 구분 */
+  --color-hero-bg: #F5F9FC;          /* 아주 옅은 블루 틴트 */
 
   /* Font families */
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;

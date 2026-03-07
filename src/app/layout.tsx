@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PromoBanner from "@/components/layout/PromoBanner";
 import AuthProvider from "@/components/auth/AuthProvider";
 import { SITE_META } from "@/lib/constants";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`${inter.variable} antialiased`}>
         <AuthProvider>
+          <PromoBanner />
           <Header />
           <main>{children}</main>
           <Footer />

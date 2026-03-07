@@ -2,10 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV_MENU } from "@/lib/constants";
 import Button from "@/components/ui/Button";
+import LanguageSelector from "@/components/ui/LanguageSelector";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 export default function Header() {
@@ -13,7 +15,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { isLoggedIn, openLogin } = useAuth();
+  const { isLoggedIn, openLogin, logout } = useAuth();
 
   useEffect(() => {
     function handleScroll() {
@@ -24,7 +26,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* close dropdown on outside click */
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -47,9 +48,14 @@ export default function Header() {
       <div className="mx-auto flex h-[52px] max-w-7xl items-center justify-between px-6 lg:h-[56px]">
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <span className="text-xl font-bold tracking-tight text-primary">
-            ContentsFly
-          </span>
+          <Image
+            src="/images/logo/contentsfly-logo.png"
+            alt="ContentsFly"
+            width={160}
+            height={40}
+            className="h-7 w-auto lg:h-8"
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -71,13 +77,13 @@ export default function Header() {
                   />
                 </button>
                 {dropdownOpen && (
-                  <div className="absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-xl border border-border bg-white py-2 shadow-lg min-w-[180px]">
+                  <div className="absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-xl border border-border bg-white py-1.5 shadow-lg">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
                         onClick={() => setDropdownOpen(false)}
-                        className="block px-5 py-2.5 text-sm text-muted transition-colors hover:bg-surface hover:text-foreground"
+                        className="block whitespace-nowrap px-4 py-2 text-sm text-muted transition-colors hover:bg-surface hover:text-foreground"
                       >
                         {child.label}
                       </Link>
@@ -99,10 +105,21 @@ export default function Header() {
 
         {/* Desktop right buttons */}
         <div className="hidden items-center gap-3 lg:flex">
+          <LanguageSelector />
+
           {isLoggedIn ? (
-            <Button href="/cf/list" variant="primary" className="px-5 py-2.5 text-sm">
-              요청하기
-            </Button>
+            <>
+              <Button href="/cf/list" variant="primary" className="px-5 py-2 text-sm">
+                시작하기
+              </Button>
+              <button
+                type="button"
+                onClick={logout}
+                className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                로그아웃
+              </button>
+            </>
           ) : (
             <>
               <button
@@ -110,14 +127,14 @@ export default function Header() {
                 onClick={openLogin}
                 className="text-sm font-medium text-muted transition-colors hover:text-foreground"
               >
-                로그인
+                회원가입
               </button>
               <Button
                 onClick={openLogin}
                 variant="primary"
-                className="px-5 py-2.5 text-sm"
+                className="px-5 py-2 text-sm"
               >
-                시작하기
+                로그인
               </Button>
             </>
           )}
@@ -173,15 +190,35 @@ export default function Header() {
 
             <div className="my-4 border-t border-border" />
 
+            {/* Mobile language selector */}
+            <div className="px-4 pb-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted">
+                Language
+              </p>
+              <LanguageSelector variant="list" />
+            </div>
+
             <div className="space-y-3 px-4">
               {isLoggedIn ? (
-                <Button
-                  href="/cf/list"
-                  variant="primary"
-                  className="w-full justify-center py-3"
-                >
-                  요청하기
-                </Button>
+                <>
+                  <Button
+                    href="/cf/list"
+                    variant="primary"
+                    className="w-full justify-center py-3"
+                  >
+                    시작하기
+                  </Button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      logout();
+                    }}
+                    className="flex w-full items-center justify-center rounded-lg border border-border px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+                  >
+                    로그아웃
+                  </button>
+                </>
               ) : (
                 <>
                   <Button
@@ -192,7 +229,7 @@ export default function Header() {
                     variant="primary"
                     className="w-full justify-center py-3"
                   >
-                    시작하기
+                    로그인
                   </Button>
                   <button
                     type="button"
@@ -202,7 +239,7 @@ export default function Header() {
                     }}
                     className="flex w-full items-center justify-center rounded-lg border border-border px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
                   >
-                    로그인
+                    회원가입
                   </button>
                 </>
               )}

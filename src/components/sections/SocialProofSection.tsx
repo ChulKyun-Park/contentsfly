@@ -37,6 +37,26 @@ export default function SocialProofSection() {
         }
       `}</style>
 
+      {/* Impact stats */}
+      <div className="mb-14 flex flex-wrap items-center justify-center gap-8 sm:gap-14">
+        <div className="text-center">
+          <p className="text-3xl font-bold text-primary sm:text-4xl">1,300+</p>
+          <p className="mt-1 text-sm text-muted">누적 고객</p>
+        </div>
+        <div className="text-center">
+          <p className="text-3xl font-bold text-primary sm:text-4xl">100M+</p>
+          <p className="mt-1 text-sm text-muted">작업 건수</p>
+        </div>
+        <div className="text-center">
+          <p className="text-3xl font-bold text-primary sm:text-4xl">88%</p>
+          <p className="mt-1 text-sm text-muted">재구매율</p>
+        </div>
+        <div className="text-center">
+          <p className="text-3xl font-bold text-primary sm:text-4xl">10+</p>
+          <p className="mt-1 text-sm text-muted">지원 언어</p>
+        </div>
+      </div>
+
       {/* Company logos */}
       <div className="mb-16">
         <p className="mb-8 text-center text-sm font-medium text-muted">

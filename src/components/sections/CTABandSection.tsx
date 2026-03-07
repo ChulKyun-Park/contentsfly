@@ -7,8 +7,10 @@ export default function CTABandSection() {
   const { isLoggedIn, openLogin } = useAuth();
 
   return (
-    <section className="bg-primary py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-navy py-24">
+      {/* Subtle pattern overlay */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+      <div className="relative mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between">
           {/* Left column */}
           <div className="lg:max-w-lg">
@@ -22,14 +24,14 @@ export default function CTABandSection() {
               {isLoggedIn ? (
                 <Button
                   href="/cf/list"
-                  className="bg-white text-primary hover:bg-white/90"
+                  className="bg-white text-navy hover:bg-white/90"
                 >
                   요청하기
                 </Button>
               ) : (
                 <Button
                   onClick={openLogin}
-                  className="bg-white text-primary hover:bg-white/90"
+                  className="bg-white text-navy hover:bg-white/90"
                 >
                   시작하기
                 </Button>
@@ -48,7 +50,7 @@ export default function CTABandSection() {
             <div className="mt-6">
               <Button
                 href="/business"
-                className="border-2 border-white text-white hover:bg-white/10"
+                className="bg-primary text-white hover:bg-primary-dark"
               >
                 비즈니스 문의
               </Button>
